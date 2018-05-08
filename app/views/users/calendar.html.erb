@@ -1,0 +1,11 @@
+<%= render partial: 'layouts/menu', locals: { parent: "#{@company.name.titleize}", child: "Calendar" } %>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-calendar"></i> Calendar
+    </div>
+    <div class="card-body">
+        <iframe src="https://calendar.google.com/calendar/embed?src=<%= URI.encode(@user.email) %>" style="border: 0; width: 100%; height: 600px;" frameborder="0" scrolling="no"></iframe>
+        <!-- TODO integrate fullcalendar-rails <div class='calendar'></div> -->
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>

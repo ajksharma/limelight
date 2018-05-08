@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_company
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :calendar]
 
   # GET /users/1
   # GET /users/1.json
@@ -28,10 +28,13 @@ class UsersController < ApplicationController
     redirect_to root_path, notice: "We've successfully removed your account."
   end
 
+  def calendar
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.friendly.find(params[:id])
+      @user = current_user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
   resources :companies, only: [:edit, :update, :show] do
-    get 'analytics'
-    get 'show_applicants'
-    resources :users, only: [:edit, :update, :show, :destroy]
+    get :analytics
+    get :show_applicants
+
+    resources :users, only: [:edit, :update, :show, :destroy] do
+      get :calendar
+    end
+
     resources :teams
     resources :locations
+
     resources :job_postings do
       resources :applicants, only: [:contact, :email] do
         get :contact
