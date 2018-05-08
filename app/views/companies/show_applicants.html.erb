@@ -1,0 +1,59 @@
+<%= render partial: 'layouts/menu', locals: { parent: "#{@company.name.titleize}", child: "All Applicants" } %>
+<!-- start displaying all applicants -->
+<div class="card mb-3">
+  <div class="card-header">
+    <h1>All Applicants</h1>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped" id="applicants-table" width="100%" cellspacing="0">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col"><i class="fa fa-envelope" aria-hidden="true"></i> Email</th>
+            <th scope="col"><i class="fa fa-retweet" aria-hidden="true"></i> Status</th>
+            <th scope="col"><i class="fa fa-phone-square" aria-hidden="true"></i> Contact</th>
+            <th scope="col"><i class="fa fa-address-card-o" aria-hidden="true"></i> Website</th>
+            <th scope="col"><i class="fa fa-linkedin-square" aria-hidden="true"></i> LinkedIn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @applicants.each do |applicant| %>
+          <tr>
+            <td><%= applicant.first_name %></td>
+            <td><%= applicant.last_name %></td>
+            <td><%= link_to applicant.email, company_job_posting_applicant_contact_path(@company, applicant.job_posting, applicant) %></td>
+            <td><%= applicant.status %></td>
+            <td><%= applicant.phone_number %></td>
+            <td><%= link_to applicant.website_url.truncate(25), applicant.website_url, target: "_blank" %></td>
+            <td><%= link_to applicant.linkedin_url.truncate(25), applicant.linkedin_url, target: "_blank" %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+<!-- end displaying all applicants -->
+<!-- Modal -->
+<div class="modal fade" id="resume-modal" tabindex="-1" role="dialog" aria-labelledby="resume-modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="resume-modal-label">Resume</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="embed-responsive embed-responsive-16by9">
+          <embed class="embed-responsive-item" id="pdf-iframe" allowfullscreen>
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :update, :destroy, :stats]
+  before_action :set_company, only: [:show, :edit, :update, :destroy, :stats,:show_applicants]
 
   # GET /companies/1
   # GET /companies/1.json
@@ -8,6 +8,10 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1/edit
   def edit
+  end
+
+  def show_applicants
+    @applicants = Applicant.all.includes(:job_posting)
   end
 
   # PATCH/PUT /companies/1
