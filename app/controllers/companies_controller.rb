@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :update, :destroy, :stats,:show_applicants]
+  before_action :set_company, only: [:show, :edit, :update, :destroy, :analytics, :show_applicants]
 
   # GET /companies/1
   # GET /companies/1.json
@@ -35,7 +35,7 @@ class CompaniesController < ApplicationController
     end
   end
 
-  def stats
+  def analytics
     @job_postings = JobPosting.all.includes(:team)
     @applicants = Applicant.all
   end

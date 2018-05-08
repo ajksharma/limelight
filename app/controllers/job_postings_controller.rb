@@ -12,6 +12,7 @@ class JobPostingsController < ApplicationController
       @applicants = @job_posting.applicants
       render template: "job_postings/show"
     else
+      @job_posting.views.create
       render template: "job_postings/apply"
     end
   end

@@ -16,13 +16,15 @@ end
     applicants_count: 0,
     team_id: teams.sample.id,
     company_id: company.id,
-    created_at: Faker::Number.between(0, 90).days.ago
+    created_at: Faker::Number.between(0, 180).days.ago
   )
 end
 
 fake_resume = File.new(Rails.root.join('public', 'resumes', 'resume3.pdf'))
 
 JobPosting.all.each do |posting|
+  posting_date = Faker::Number.between(0, 180).days.ago
+
   25.times do
     Applicant.create(
       first_name: Faker::Name.first_name,
@@ -39,7 +41,11 @@ JobPosting.all.each do |posting|
       website_url: Faker::Avatar.image,
       linkedin_url: Faker::Avatar.image,
       job_posting_id: posting.id,
-      created_at: Faker::Number.between(0, 90).days.ago
+      created_at: posting_date
     )
+  end
+
+  2000.times do
+    posting.views.create(created_at: Faker::Number.between(posting_date, 0).days.ago)
   end
 end

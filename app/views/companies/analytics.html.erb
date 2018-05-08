@@ -1,0 +1,53 @@
+<%= render partial: 'layouts/menu', locals: { parent: "#{@company.name.titleize}", child: "Analytics" } %>
+<%= render 'analytics_cards' %>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> New Positions By Date
+    </div>
+    <div class="card-body">
+        <div class='row'>
+            <%= line_chart @job_postings.group_by_day(:created_at).count, xtitle: "Date", ytitle: "Positions", adapter: "chartjs" %>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Applicants By Date
+    </div>
+    <div class="card-body">
+        <%= line_chart @applicants.group_by_day(:created_at).count, xtitle: "Date", ytitle: "Applications", adapter: "chartjs" %>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Views Over Time
+    </div>
+    <div class="card-body">
+        <%= line_chart @job_postings.order(views_count: :desc).take(25).map { |job_posting|
+            {name: job_posting.title, data: job_posting.views.group_by_week(:created_at).count}
+        }, xtitle: "Month", ytitle: "Views", adapter: "google" %>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Top 5 Listings
+    </div>
+    <div class="card-body">
+        <%= line_chart @job_postings.sort_by(&:views_count).take(5).map { |job_posting|
+            {name: job_posting.title, data: job_posting.views.group_by_week(:created_at).count}
+        }, xtitle: "Month", ytitle: "Views", adapter: "chartjs" %>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Performance &amp; Budget Allocation by Team </div>
+    <div class="card-body">
+        <%= bar_chart Team.all.map { |t| [t.name, t.job_postings.sum(&:min_salary)] }, adapter: "chartjs", prefix: '$', thousands:',' %>
+        <%= pie_chart Team.all.map { |t| [t.name, t.job_postings.size] }, adapter: "google" %>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>

@@ -37,6 +37,7 @@ class CreateStartingTables < ActiveRecord::Migration[5.1]
       t.string      :description
       t.decimal     :min_salary
       t.integer     :years_of_experience
+      t.integer     :views_count, default: 0, null: false
       t.integer     :applicants_count, default: 0, null: false
       t.belongs_to  :team, type: :uuid, index: true, null: false
       t.belongs_to  :company, type: :uuid, index: true, null: false

@@ -57,7 +57,16 @@
     </div>
     <div class="card-footer small text-muted">Updated <%= @job_posting.updated_at %></div>
 </div>
-
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Views Over Time
+    </div>
+    <div class="card-body">
+        <%= area_chart @job_posting.views.group_by_day(:created_at).count, ytitle: "Views", adapter: "chartjs" %>
+        <%= column_chart @job_posting.views.group_by_day_of_week(:created_at, format: "%a").count, ytitle: "Views", adapter: "chartjs" %>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
 <!-- Applicants -->
 <div class="card mb-3">
     <div class="card-header">

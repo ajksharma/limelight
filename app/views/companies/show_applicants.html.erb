@@ -1,5 +1,6 @@
-<%= render partial: 'layouts/menu', locals: { parent: "#{@company.name.titleize}", child: "All Applicants" } %>
+<%= render partial: 'layouts/menu', locals: { parent: "#{@company.name.titleize}", child: "Applicants" } %>
 <!-- start displaying all applicants -->
+<%= render 'analytics_cards' %>
 <div class="card mb-3">
   <div class="card-header">
     <h1>All Applicants</h1>

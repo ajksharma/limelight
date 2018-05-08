@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180422184207) do
+ActiveRecord::Schema.define(version: 20180508053914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20180422184207) do
     t.string "description"
     t.decimal "min_salary"
     t.integer "years_of_experience"
+    t.integer "views_count", default: 0, null: false
     t.integer "applicants_count", default: 0, null: false
     t.uuid "team_id", null: false
     t.uuid "company_id", null: false
@@ -126,6 +127,13 @@ ActiveRecord::Schema.define(version: 20180422184207) do
     t.integer "status", default: 0
     t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["slug"], name: "index_users_on_slug"
+  end
+
+  create_table "views", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "job_posting_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_posting_id"], name: "index_views_on_job_posting_id"
   end
 
 end
