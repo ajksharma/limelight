@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 20180508053914) do
     t.string "description"
     t.decimal "min_salary"
     t.integer "years_of_experience"
-    t.integer "views_count", default: 0, null: false
     t.integer "applicants_count", default: 0, null: false
     t.uuid "team_id", null: false
     t.uuid "company_id", null: false
