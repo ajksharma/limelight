@@ -97,7 +97,7 @@
                         <td>
                             <button type="button" class="btn btn-secondary btn-sm btn-view-pdf" data-toggle="modal" data-target="#resume-modal" id="/resumes/<%= applicant.resume.path %>">View</button>
                         </td>
-                        <td><%= applicant.rank %></td>
+                        <td><%= applicant.rank.to_i %></td>
                         <td><%= applicant.status %></td>
                         <td><%= applicant.phone_number %></td>
                         <td><%= link_to applicant.website_url.truncate(25), applicant.website_url, target: "_blank" %></td>
