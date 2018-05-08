@@ -19,7 +19,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   # authentication
   get 'login', to: redirect('/auth/google_oauth2')
   get 'logout', to: 'sessions#revoke'

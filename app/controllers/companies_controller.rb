@@ -9,9 +9,9 @@ class CompaniesController < ApplicationController
   # GET /companies/1/edit
   def edit
   end
+
   def show_applicants
-    @job_postings = JobPosting.all.includes(:team)
-    @applicants = Applicant.all
+    @applicants = Applicant.all.includes(:job_posting)
   end
 
   # PATCH/PUT /companies/1
