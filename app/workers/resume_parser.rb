@@ -1,5 +1,6 @@
 class ResumeParser
   include Sidekiq::Worker
+  sidekiq_options backtrace: true, queue: 'high', retry: false
 
   # Generates an integer rank of the matching keywords between the job posting
   # and the applicant resume.
