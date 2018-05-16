@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       get :calendar
     end
 
-    resources :teams
+    resources :teams, except: [:show]
     resources :locations
 
     resources :job_postings do

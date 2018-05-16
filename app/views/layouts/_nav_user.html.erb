@@ -31,8 +31,14 @@
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Applicants">
                 <%= link_to company_show_applicants_path(@company), class: 'nav-link' do %>
-                    <i class="fa fa-fw fa-sitemap"></i>
+                    <i class="fa fa-fw fa-users"></i>
                     <span class="nav-link-text">Applicants</span>
+                <% end %>
+            </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Teams">
+                <%= link_to company_teams_path(@company), class: 'nav-link' do %>
+                    <i class="fa fa-fw fa-sitemap"></i>
+                    <span class="nav-link-text">Teams</span>
                 <% end %>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= @company.name.titleize %> Resources">

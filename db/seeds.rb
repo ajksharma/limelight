@@ -1,5 +1,5 @@
 # make sure you log into the app before you run rails db:seed
-user = User.first
+user = User.last
 company = user.company
 
 teams = 10.times.map do

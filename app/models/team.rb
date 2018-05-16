@@ -16,6 +16,7 @@ class Team < ApplicationRecord
   friendly_id :name, use: :slugged
   belongs_to  :company
   has_many    :job_postings
+  enum        status: %i(active inactive)
 
   validates   :name, presence: true, uniqueness: true
 end

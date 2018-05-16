@@ -1,0 +1,16 @@
+<%= render partial: 'layouts/menu', locals: { parent: "#{@company.name.titleize}", child: "New Team" } %>
+<div class="card mb-3">
+  <div class="card-body">
+        <%= bootstrap_form_with(model: @team, url: company_teams_path(@company), local: true) do |f| %>
+            <div class="form-group">
+                <%= f.text_field :name, placeholder: "Enter a name here..." %>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <%= f.submit "Create", class: "btn btn-md btn-primary float-left" %>
+         <% end %>
+                <%= link_to "Cancel", company_teams_path(@company), class: "btn btn-md btn-secondary float-right" %>
+                </div>
+            </div>
+  </div>
+</div>

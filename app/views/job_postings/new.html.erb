@@ -29,7 +29,7 @@
                         <%= f.number_field :min_salary, value: number_to_currency(f.object.min_salary.to_f, delimiter: '', unit: ''), step: 0.01, label: "Salary" %>
                     </div>
                     <div class="col-sm-6 form-group">
-                        <%= f.select :team_id, @company.teams.map { |t| [t.name, t.id] }, label: "Team" %>
+                        <%= f.select :team_id, @company.teams.active.map { |t| [t.name, t.id] }, label: "Team" %>
                     </div>
                     <div class="col-sm-6 form-group">
                         <label>Work Authorization</label>
