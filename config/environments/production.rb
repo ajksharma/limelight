@@ -112,4 +112,6 @@ Rails.application.configure do
 
   # Include font files to Assets
   config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
+
+  config.serve_static_assets = true
 end
